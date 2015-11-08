@@ -6,7 +6,7 @@
         .directive('htTopNav', htTopNav);
 
     /* @ngInject */
-    function htTopNav () {
+    function htTopNav(auth) {
         var directive = {
             bindToController: true,
             controller: TopNavController,
@@ -19,8 +19,20 @@
         };
 
         /* @ngInject */
-        function TopNavController() {
+        function TopNavController($scope) {
             var vm = this;
+
+            $scope.$watch(function() {
+                return auth.profile;
+            }, function() {
+                if (auth.profile) {
+                    vm.username = auth.profile.name;
+                    vm.userPic = auth.profile.picture;
+                } else {
+                    vm.username = null;
+                    vm.userPic = '';
+                }
+            });
         }
 
         return directive;

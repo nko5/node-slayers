@@ -25,6 +25,9 @@
                         <img src="images/gulp-tiny.png" />
                     </a>
                 </li>
+                <li ng-if="vm.username">
+                    <img src="{{vm.userPic}}" alt="user_pic">{{vm.username}}
+                </li>
             </ul>
         </div>
     </div>
